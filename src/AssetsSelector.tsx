@@ -233,15 +233,12 @@ const AssetsSelector = ({
                 return responseWithResults(source, selectedItemsMetaData)
             }
             if (Resize) {
-                let modAssets: (ImageManipulator.ImageResult &
-                    Pick<MediaLibrary.Asset, 'mediaType'>)[] = []
+                let modAssets: ImageManipulator.ImageResult[] &
+                    MediaLibrary.Asset[] = []
                 await asyncForEach(selectedAssets, async (asset: Asset) => {
                     if (asset.mediaType === 'photo') {
                         const resizedImage = await resizeImages(asset, Resize)
-                        modAssets.push({
-                            ...resizedImage,
-                            mediaType: asset.mediaType,
-                        })
+                        modAssets.push(resizedImage)
                     } else modAssets.push(asset)
                 })
                 return responseWithResults(source, modAssets)
