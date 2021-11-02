@@ -51,6 +51,7 @@ export type StylesType = {
     margin: number
     bgColor: string
     spinnerColor: string
+    borderRadius?: number
     widgetWidth: number
     videoIcon: {
         Component: JSXElementConstructor<any> | null
@@ -84,11 +85,13 @@ export type NavigatorType = {
 
 export interface IScreen {
     bgColor: string
+    borderRadius: number
 }
 
 export interface IWidget {
     widgetWidth: number
     bgColor: string
+    borderRadius: number
 }
 
 export type PagedInfo = {

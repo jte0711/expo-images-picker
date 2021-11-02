@@ -97,9 +97,8 @@ const AssetsSelector = ({
 
     const getMediaLibraryPermission = useCallback(async () => {
         try {
-            const {
-                status: MEDIA_LIBRARY,
-            }: MediaLibrary.PermissionResponse = await MediaLibrary.requestPermissionsAsync()
+            const { status: MEDIA_LIBRARY }: MediaLibrary.PermissionResponse =
+                await MediaLibrary.requestPermissionsAsync()
             if (MEDIA_LIBRARY !== 'granted') {
                 setLoading(false)
                 setError({
@@ -269,7 +268,7 @@ const AssetsSelector = ({
             : CustomNavigator?.props.onSuccess(assets)
     }
     return (
-        <Screen bgColor={Styles.bgColor}>
+        <Screen bgColor={Styles.bgColor} borderRadius={Styles.borderRadius}>
             {CustomNavigator?.Component && (
                 <CustomNavigator.Component
                     {...CustomNavigator.props}
@@ -304,6 +303,7 @@ const AssetsSelector = ({
                 <Widget
                     widgetWidth={Styles.widgetWidth}
                     bgColor={Styles.bgColor}
+                    borderRadius={Styles.borderRadius}
                 >
                     <AssetList
                         cols={COLUMNS}
@@ -357,6 +357,8 @@ const HasError = styled.View<IScreen>`
 
 const Screen = styled.View<IScreen>`
     background-color: ${({ bgColor }) => bgColor};
+    border-radius: ${({ borderRadius }) =>
+        borderRadius ? `${borderRadius}px` : `0px`}
     flex: 1;
 `
 
@@ -365,6 +367,8 @@ const Widget = styled.View<IWidget>`
     flex-direction: row;
     justify-content: space-between;
     background-color: ${({ bgColor }) => bgColor};
+    border-radius: ${({ borderRadius }) =>
+        borderRadius ? `${borderRadius}px` : `0px`}
     width: ${({ widgetWidth }) => widgetWidth || 100}%;
     flex: 1;
 `
